@@ -5,8 +5,8 @@ export interface User {
 
 export interface UserDetail extends User {
   books: {
-    present: { name: string }[];
-    past: { name: string; userScore: number }[];
+    present: { id: number; name: string }[];
+    past: { id: number; name: string; userScore: number }[];
   };
 }
 

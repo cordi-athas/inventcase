@@ -1,7 +1,7 @@
 import axios from "axios";
 import { User, UserDetail, Book, BookDetail } from "../types";
 
-const API_URL = process.env.REACT_APP_API_URL || "http://localhost:5000";
+const API_URL = process.env.REACT_APP_API_URL || "http://localhost:3001";
 
 const api = axios.create({
   baseURL: API_URL,
@@ -26,7 +26,6 @@ export const bookService = {
     api.get<BookDetail>(`/books/${id}`).then((res) => res.data),
 };
 
-// Error handling interceptor
 api.interceptors.response.use(
   (response) => response,
   (error) => {

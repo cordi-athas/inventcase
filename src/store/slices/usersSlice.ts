@@ -29,9 +29,16 @@ export const fetchUserById = createAsyncThunk(
 
 export const borrowBook = createAsyncThunk(
   "users/borrowBook",
-  async ({ userId, bookId }: { userId: number; bookId: number }) => {
-    await userService.borrowBook(userId, bookId);
-    return await userService.getUser(userId);
+  async (
+    { userId, bookId }: { userId: number; bookId: number },
+    { rejectWithValue }
+  ) => {
+    try {
+      await userService.borrowBook(userId, bookId);
+      return null;
+    } catch (error: any) {
+      return rejectWithValue(error.message || "Failed to borrow book");
+    }
   }
 );
 
